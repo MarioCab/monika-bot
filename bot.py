@@ -65,7 +65,7 @@ async def popular(interaction: discord.Interaction):
     url = "https://myanimelist.p.rapidapi.com/anime/top/airing"
 
     headers = {
-	"X-RapidAPI-Key": "557fb94ce3msh7876cdde15b2a77p18ecb7jsn0cc03d43f1b0",
+	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key"),
 	"X-RapidAPI-Host": "myanimelist.p.rapidapi.com"
 }
     nameList = []
