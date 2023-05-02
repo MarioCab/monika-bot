@@ -24,6 +24,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 
 # On Ready Message
+
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
@@ -34,6 +35,7 @@ async def on_ready():
         print(e)
 
 
+# General responses to having Monika in the message
 
 @bot.event
 async def on_message(message):
@@ -47,11 +49,14 @@ async def on_message(message):
     await bot.process_commands(message)
 
 
+# Slash command for Monika to tell a joke
 
 @bot.tree.command(name="joke")
 async def joke(interaction: discord.Interaction):
     await interaction.response.send_message(get_joke())
 
+
+# Slash Command for Monika to pull Top Upcoming Anime
 
 
 bot.run(TOKEN)
