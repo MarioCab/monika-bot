@@ -14,10 +14,7 @@ test_connection()
 # Bot Variables
 
 TOKEN =os.getenv('BOT_TOKEN')
-intents = discord.Intents.default()
-intents.message_content = True
-client = discord.Client(intents=intents)
-tree = app_commands.CommandTree(client)
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Discord Variables
@@ -25,27 +22,34 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 
 # On Ready Message
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(bot))
+    try:
+        synced = await bot.tree.sync()
+        print(f"Synced {len(synced)} command(s)")
+    except Exception as e:
+        print(e)
 
 
-@client.event
+
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
     
     if "monika" in (str(message.content).lower()):
         await message.channel.send("Oh.. I'm listening")
     else:
         return
+    await bot.process_commands(message)
 
 
 
-@bot.command()
-async def joke(ctx):
-    await ctx.send("Joke here")
+@bot.tree.command(name="joke")
+async def joke(interaction: discord.Interaction):
+    await interaction.response.send_message("This is a good joke")
 
 
 
-client.run(TOKEN)
+bot.run(TOKEN)
