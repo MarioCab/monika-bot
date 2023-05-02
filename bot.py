@@ -20,11 +20,27 @@ client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+# Discord Variables
+
+
 
 # On Ready Message
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    
+    if "monika" in (str(message.content).lower()):
+        await message.channel.send("Oh.. I'm listening")
+    else:
+        return
+
+
 
 @bot.command()
 async def joke(ctx):
