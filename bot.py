@@ -1,6 +1,6 @@
 import discord
 import os
-from config import test_connection, get_joke, get_pop_airing
+from config import get_joke
 from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
