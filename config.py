@@ -51,14 +51,17 @@ def get_pop_airing():
 	"X-RapidAPI-Key": "557fb94ce3msh7876cdde15b2a77p18ecb7jsn0cc03d43f1b0",
 	"X-RapidAPI-Host": "myanimelist.p.rapidapi.com"
 }
-    list = []
+    nameList = []
+    scoreList = []
 
     response = requests.get(url, headers=headers)
     response_json = json.loads(response.text)
     
     for item in response_json:
-        print(item['title'])
-
+        nameList.append(item['title'])
+        scoreList.append(item['score'])
+        return nameList, scoreList
+    
 get_pop_airing()
 
 
