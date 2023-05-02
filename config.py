@@ -1,20 +1,19 @@
-import mysql.connector
-from mysql.connector import errorcode
 import os
+import mysql.connector
 from dotenv import load_dotenv
+from mysql.connector import errorcode
 load_dotenv()
 
 
 
-# DB Connection
+cnx = mysql.connector.connect(
+    user= os.getenv('DB_USER'),
+    password= os.getenv('DB_PW'),
+    host= os.getenv('DB_HOST'),
+    database= os.getenv('DB_NAME'))
+
 
 def test_connection():
-    cnx = mysql.connector.connect(
-        user= os.getenv('DB_USER'),
-        password= os.getenv('DB_PW'),
-        host= os.getenv('DB_HOST'),
-        database= os.getenv('DB_NAME')
-    )
     try:
         cnx
     except mysql.connector.Error as err:
@@ -26,8 +25,3 @@ def test_connection():
             print(err)
     else: 
         print ('We have sucessfully connected to the database')
-
-
-
-
-

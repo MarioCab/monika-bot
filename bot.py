@@ -1,8 +1,9 @@
-import os
-from dotenv import load_dotenv
-from config import test_connection
 import discord
+import os
+from config import test_connection
 from discord import app_commands
+from discord.ext import commands
+from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -10,15 +11,25 @@ load_dotenv()
 
 test_connection()
 
-def run_bot():
-    TOKEN =os.getenv('BOT_TOKEN')
-    intents = discord.Intents.default()
-    intents.message_content = True
-    client = discord.Client(intents=intents)
-    tree = app_commands.CommandTree(client)
+# Bot Variables
 
-    @client.event
-    async def on_ready():
-        print('We have logged in as {0.user}'.format(client))
+TOKEN =os.getenv('BOT_TOKEN')
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
+tree = app_commands.CommandTree(client)
+bot = commands.Bot(command_prefix="!", intents=intents)
 
-    client.run(TOKEN)
+
+# On Ready Message
+@client.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
+
+@bot.command()
+async def joke(ctx):
+    await ctx.send("Joke here")
+
+
+
+client.run(TOKEN)
