@@ -42,26 +42,5 @@ def get_joke():
     return joke
 
 
-# Popular Airing Anime
-
-def get_pop_airing():
-    url = "https://myanimelist.p.rapidapi.com/anime/top/airing"
-
-    headers = {
-	"X-RapidAPI-Key": os.getenv("X-RapidAPI-Key"),
-	"X-RapidAPI-Host": "myanimelist.p.rapidapi.com"
-}
-    nameList = []
-    scoreList = []
-
-    response = requests.get(url, headers=headers)
-    response_json = json.loads(response.text)
-    
-    for item in response_json:
-        nameList.append(item['title'])
-        scoreList.append(item['score'])
-        return nameList, scoreList
-    
-get_pop_airing()
 
 
