@@ -13,7 +13,7 @@ import json
 
 # Load Connections
 
-test_connection()
+# test_connection()
 
 # Bot Variables
 
