@@ -1,10 +1,12 @@
 import discord
 import os
-from config import test_connection
+from config import test_connection, get_joke
 from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
 load_dotenv()
+from responses import general_responses
+import random
 
 
 # Load Connections
@@ -39,7 +41,7 @@ async def on_message(message):
         return
     
     if "monika" in (str(message.content).lower()):
-        await message.channel.send("Oh.. I'm listening")
+        await message.channel.send(random.choice(general_responses))
     else:
         return
     await bot.process_commands(message)
@@ -48,7 +50,7 @@ async def on_message(message):
 
 @bot.tree.command(name="joke")
 async def joke(interaction: discord.Interaction):
-    await interaction.response.send_message("This is a good joke")
+    await interaction.response.send_message(get_joke())
 
 
 
