@@ -50,6 +50,7 @@ async def on_message(message):
     if ((message.content)[0]) == ":sparkling_heart:" and ((message.content)[-1]) == ":sparkling_heart:" in (message.content).lower():
         await message.gen.send(f"A claim has been made! {message.content}. What a score!")
     else:
+        print(message.content)
         return
     await bot.process_commands(message)
 
