@@ -20,7 +20,7 @@ import json
 TOKEN =os.getenv('BOT_TOKEN')
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
-
+gen = bot.get_channel(1080239113048965131)
 # Discord Variables
 
 
@@ -46,6 +46,9 @@ async def on_message(message):
     
     if "monika" in (str(message.content).lower()):
         await message.channel.send(random.choice(general_responses))
+
+    if ((message.content)[0]) == ":sparkling_heart:" and ((message.content)[-1]) == ":sparkling_heart:" in (message.content).lower():
+        await message.gen.send(f"A claim has been made! {message.content}. What a score!")
     else:
         return
     await bot.process_commands(message)
