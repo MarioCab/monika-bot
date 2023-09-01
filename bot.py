@@ -51,13 +51,13 @@ async def on_message(message):
     if ((message.content)[0]) == "💖" and ((message.content)[-1]) == "💖" in (message.content).lower():
 
         gen = bot.get_channel(1147006775065858058)
-        robsAutism = "https://discord.com/channels/872994683603796038/1139401271036624916/"
+        robsIdea = "https://discord.com/channels/872994683603796038/1139401271036624916/"
         #def getSubstringBetweenTwoChars(ch1,ch2,str):
         #    return s[s.find(ch1)+1:s.find(ch2)]
         #s = (message.content)
         #s2= getSubstringBetweenTwoChars('d','are',s)
         #print(s2)  
-        await gen.send(f"{robsAutism}{(message.id)}")
+        await gen.send(f"{robsIdea}{(message.id)}")
         await gen.send(f"A claim has been made! {(message.content)} What a score!")
         #time.sleep(2.5)
         #await gen.send(f"$im {s2}")
