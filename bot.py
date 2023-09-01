@@ -9,6 +9,7 @@ from responses import general_responses
 import random
 import requests
 import json
+import time
 
 
 # Load Connections
@@ -20,7 +21,7 @@ import json
 TOKEN =os.getenv('BOT_TOKEN')
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
-gen = bot.get_channel(1080239113048965131)
+
 # Discord Variables
 
 
@@ -48,7 +49,18 @@ async def on_message(message):
         await message.channel.send(random.choice(general_responses))
 
     if ((message.content)[0]) == "💖" and ((message.content)[-1]) == "💖" in (message.content).lower():
-        await message.gen.send(f"A claim has been made! {message.content}. What a score!")
+
+        gen = bot.get_channel(1147006775065858058)
+        robsAutism = "https://discord.com/channels/872994683603796038/1139401271036624916/"
+        #def getSubstringBetweenTwoChars(ch1,ch2,str):
+        #    return s[s.find(ch1)+1:s.find(ch2)]
+        #s = (message.content)
+        #s2= getSubstringBetweenTwoChars('d','are',s)
+        #print(s2)  
+        await gen.send(f"{robsAutism}{(message.id)}")
+        await gen.send(f"A claim has been made! {(message.content)} What a score!")
+        #time.sleep(2.5)
+        #await gen.send(f"$im {s2}")
     else:
         print(message.content)
         return
