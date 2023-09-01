@@ -47,7 +47,7 @@ async def on_message(message):
     if "monika" in (str(message.content).lower()):
         await message.channel.send(random.choice(general_responses))
 
-    if ((message.content)[0]) == ":sparkling_heart:" and ((message.content)[-1]) == ":sparkling_heart:" in (message.content).lower():
+    if ((message.content)[0]) == "💖" and ((message.content)[-1]) == "💖" in (message.content).lower():
         await message.gen.send(f"A claim has been made! {message.content}. What a score!")
     else:
         print(message.content)
