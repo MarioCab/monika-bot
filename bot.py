@@ -10,6 +10,12 @@ import random
 import requests
 import json
 import time
+from steam import Steam
+from decouple import config
+from urllib.request import urlopen
+import urllib.request
+from bs4 import BeautifulSoup
+
 
 
 # Load Connections
@@ -49,18 +55,38 @@ async def on_message(message):
         await message.channel.send(random.choice(general_responses))
 
     if ((message.content)[0]) == "💖" and ((message.content)[-1]) == "💖" in (message.content).lower():
-
         gen = bot.get_channel(1147006775065858058)
         robsIdea = "https://discord.com/channels/872994683603796038/1139401271036624916/"
-        #def getSubstringBetweenTwoChars(ch1,ch2,str):
-        #    return s[s.find(ch1)+1:s.find(ch2)]
-        #s = (message.content)
-        #s2= getSubstringBetweenTwoChars('d','are',s)
-        #print(s2)  
         await gen.send(f"{robsIdea}{(message.id)}")
         await gen.send(f"A claim has been made! {(message.content)} What a score!")
-        #time.sleep(2.5)
-        #await gen.send(f"$im {s2}")
+    
+    if "$charts" in (str(message.content).lower()):
+        g1 = (str(message.content))
+        game = g1.removeprefix('$charts ')
+        #print(game)
+        KEY = config("STEAM_API_KEY")
+        steam = Steam(KEY)
+        steamResults = steam.apps.search_games(game)
+        #print(steamResults)
+        game_id = (steamResults['apps'][0]['id'])
+
+        url = (f"https://steamcharts.com/app/{game_id}")
+        user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+        headers={'User-Agent':user_agent,} 
+        request=urllib.request.Request(url,None,headers)
+        response = urllib.request.urlopen(request)
+        data = response.read()
+        doc = BeautifulSoup(data, "html.parser")
+        recent = (doc.find_all("span")[2]).string
+        twentyfourhour = (doc.find_all("span")[3]).string
+        allTime = (doc.find_all("span")[4]).string
+        print(recent.string)
+        print(twentyfourhour.string)
+        print(allTime.string)
+        await message.channel.send(f"📈 Here is the steam chart data for {game}:\n\n⭐ Recent Player Count: {recent}\n\n⭐ 24Hr Player Count: {twentyfourhour}\n\n⭐ All Time Peak: {allTime}")
+
+
+
     else:
         print(message.content)
         return
