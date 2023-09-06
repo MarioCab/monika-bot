@@ -18,9 +18,6 @@ from bs4 import BeautifulSoup
 
 
 
-# Load Connections
-
-# test_connection()
 
 # Bot Variables
 
@@ -63,13 +60,14 @@ async def on_message(message):
     if "$charts" in (str(message.content).lower()):
         g1 = (str(message.content))
         game = g1.removeprefix('$charts ')
-        #print(game)
+        print(game)
         KEY = config("STEAM_API_KEY")
         steam = Steam(KEY)
         steamResults = steam.apps.search_games(game)
-        #print(steamResults)
+        #time.sleep(3)
+        print(steamResults)
         game_id = (steamResults['apps'][0]['id'])
-
+        print(game_id)
         url = (f"https://steamcharts.com/app/{game_id}")
         user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
         headers={'User-Agent':user_agent,} 
@@ -84,7 +82,12 @@ async def on_message(message):
         print(twentyfourhour.string)
         print(allTime.string)
         await message.channel.send(f"📈 Here is the steam chart data for {game}:\n\n⭐ Recent Player Count: {recent}\n\n⭐ 24Hr Player Count: {twentyfourhour}\n\n⭐ All Time Peak: {allTime}")
-
+    if "$waf" in (str(message.content).lower()):
+        class MyView(discord.ui.View): # Create a class called MyView that subclasses discord.ui.View
+            @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="💠")
+            async def button_callback(self, interaction, button):
+                await interaction.response.send_message(f"Holy shit, {interaction.user.name} just clicked the button. What a fucking retard\n", file=discord.File("./laugh.jpg"))
+        await message.channel.send(view=MyView())    
 
 
     else:
@@ -92,12 +95,14 @@ async def on_message(message):
         return
     await bot.process_commands(message)
 
-
 # Slash command for Monika to tell a joke
 
 @bot.tree.command(name="joke")
 async def joke(interaction: discord.Interaction):
     await interaction.response.send_message(get_joke())
+
+
+
 
 
 # Slash Command for Monika to pull Popular  Anime
