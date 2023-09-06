@@ -16,7 +16,7 @@ images = ["https://steamuserimages-a.akamaihd.net/ugc/1692773483557994720/3B965C
             "https://i.pinimg.com/736x/67/a0/f4/67a0f41ac75b1522fb8c84223b0a9bde.jpg",
             "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2006%2F06%2F15518__cars_l.jpg&q=60",
             "https://s4.anilist.co/file/anilistcdn/character/large/b17-IazKGogQwJ1p.png",
-            "https://static.zerochan.net/Uchiha.Sasuke.full.3260069.png,
+            "https://static.zerochan.net/Uchiha.Sasuke.full.3260069.png",
             "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/7a14d035-ea42-4049-8466-837f4751a000/width=1200/7a14d035-ea42-4049-8466-837f4751a000.jpeg",
             "https://s4.anilist.co/file/anilistcdn/character/large/b7-JdR4betokDjR.jpg",
             "https://i.pinimg.com/736x/bd/1d/b5/bd1db58ff2706cf959675b2ca74557d3.jpg"
