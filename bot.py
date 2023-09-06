@@ -83,10 +83,12 @@ async def on_message(message):
         print(allTime.string)
         await message.channel.send(f"📈 Here is the steam chart data for {game}:\n\n⭐ Recent Player Count: {recent}\n\n⭐ 24Hr Player Count: {twentyfourhour}\n\n⭐ All Time Peak: {allTime}")
     if "$waf" in (str(message.content).lower()):
-        class MyView(discord.ui.View): # Create a class called MyView that subclasses discord.ui.View
-            @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="💠")
+        images = ["megumin2.png", "mikasaa2.png", "nami2.png", "rem2.jpg"]
+        class MyView(discord.ui.View): 
+            @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="💖")
             async def button_callback(self, interaction, button):
-                await interaction.response.send_message(f"Holy shit, {interaction.user.name} just clicked the button. What a fucking retard\n", file=discord.File("./laugh.jpg"))
+                await interaction.response.send_message(f"Everyone point and laugh at {interaction.user.name} they just clicked the button. The obviously fake button. Publicly shame them\n", file=discord.File("./img/laugh.jpg"))
+        await message.channel.send(file=discord.File(f"./img/{random.choice(images)}")) 
         await message.channel.send(view=MyView())    
 
 
