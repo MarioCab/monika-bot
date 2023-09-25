@@ -89,7 +89,7 @@ async def on_message(message):
         embedChart.add_field(name=f"Game",value=f"{game.upper()}", inline=False)
         embedChart.add_field(name="Recent Player Count", value=f"{recent}", inline=False)
         embedChart.add_field(name="24 Hour Peak", value=f"{twentyfourhour}", inline=False)
-        embedChart.add_field(name="Recent Player Count", value=f"{allTime}", inline=False)
+        embedChart.add_field(name="All Time Peak", value=f"{allTime}", inline=False)
         await message.channel.send(embed = embedChart)
         #await message.channel.send(f"📈 Here is the steam chart data for {game}:\n\n⭐ Recent Player Count: {recent}\n\n⭐ 24Hr Player Count: {twentyfourhour}\n\n⭐ All Time Peak: {allTime}")
     if "$waf" in (str(message.content).lower()):
