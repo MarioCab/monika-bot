@@ -68,7 +68,9 @@ async def on_message(message):
         #time.sleep(3)
         print(steamResults)
         game_id = (steamResults['apps'][0]['id'])
+        img_id = (steamResults['apps'][0]['img'])
         print(game_id)
+        print(img_id)
         url = (f"https://steamcharts.com/app/{game_id}")
         user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
         headers={'User-Agent':user_agent,} 
@@ -82,7 +84,14 @@ async def on_message(message):
         print(recent.string)
         print(twentyfourhour.string)
         print(allTime.string)
-        await message.channel.send(f"📈 Here is the steam chart data for {game}:\n\n⭐ Recent Player Count: {recent}\n\n⭐ 24Hr Player Count: {twentyfourhour}\n\n⭐ All Time Peak: {allTime}")
+        embedChart=discord.Embed(color=15105570)
+        embedChart.set_image(url=f"{img_id}")
+        embedChart.add_field(name=f"Game",value=f"{game.upper()}", inline=False)
+        embedChart.add_field(name="Recent Player Count", value=f"{recent}", inline=False)
+        embedChart.add_field(name="24 Hour Peak", value=f"{twentyfourhour}", inline=False)
+        embedChart.add_field(name="Recent Player Count", value=f"{allTime}", inline=False)
+        await message.channel.send(embed = embedChart)
+        #await message.channel.send(f"📈 Here is the steam chart data for {game}:\n\n⭐ Recent Player Count: {recent}\n\n⭐ 24Hr Player Count: {twentyfourhour}\n\n⭐ All Time Peak: {allTime}")
     if "$waf" in (str(message.content).lower()):
         class MyView(discord.ui.View): 
             @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="💖")
